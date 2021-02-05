@@ -36,10 +36,12 @@ The first step is to compile the code inside zk-circuit.zok, which holds the log
 
 which should start a shell inside the ZoKrates Docker container. Now you have to copy the zk-circuit.zok file into the container.
 
-```docker cp path/of/your/local/zk-circuit.zok zokrates:/home/```
+```docker cp path/of/your/local/zk-circuit.zok zokrates:/home/zokrates/```
 
 Then, inside the ZoKrates container, run:
 
-```zokrates compile -i zl-circuit.zok```
+```zokrates compile -i zk-circuit.zok```
+```zokrates setup```
 
+This will generate the proofing and the verification key, which will be used later.
 
