@@ -30,9 +30,16 @@ More about this in our scientific paper about the project.
 
 ## Setup
 
-The first step is to compile the code inside zk-circuit.zok, which holds the logic for a zero knowledge proof on a blockchain transaction. To do this, simple run ```docker run -ti zokrates/zokrates /bin/bash```
+The first step is to compile the code inside zk-circuit.zok, which holds the logic for a zero knowledge proof on a blockchain transaction. To do this, simple run
+
+```docker run -ti zokrates/zokrates /bin/bash```
+
 which should start a shell inside the ZoKrates Docker container. Now you have to copy the zk-circuit.zok file into the container.
+
 ```docker cp path/of/your/local/zk-circuit.zok zokrates:/home/```
+
 Then, inside the ZoKrates container, run:
-```zokrates compile -i zl-circuit.zok``
+
+```zokrates compile -i zl-circuit.zok```
+
 
