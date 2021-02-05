@@ -19,7 +19,7 @@ As part of a hackathon, ETHSingapore created an application to perform Zero Know
 
 # zkDAI
 
-zkDAI is the prototype stablecoin cryptocurrency that uses so-called "zero knowledge proofs" to ensure completely anonymous transactions over the blockchain. When using standard cryptocurrencies, such as Bitcoin, everyone can easily determine from which address how many BTC were sent to which receiving address via the [Bitcoin Blockexplorer](https://www.blockchain.com/de/explorer). To encrypt these publicly visible parameters, zkDAI uses zkSNARKS (Zero-Knowledge Succinct Non-Interactive Argument of Knowledge) proofs. They are sent along with the transaction, being encrypted with a Sha256 hash function, to prove, via a special smart contract, that the contents of the transaction actually match the expected parameters. To create these proofs as well as the smart contracts we used [ZoKrates](https://zokrates.github.io), a tool specifically designed for Zero Knowledge interactions on the Ethereum blockchain.
+zkDAI is the prototype stablecoin cryptocurrency that uses so-called "zero knowledge proofs" to ensure completely anonymous transactions over the blockchain. When using standard cryptocurrencies, such as Bitcoin, everyone can easily determine from which address how many BTC were sent to which receiving address via the [Bitcoin Blockexplorer](https://www.blockchain.com/de/explorer). To encrypt these publicly visible parameters, zkDAI uses zkSNARKS (Zero-Knowledge Succinct Non-Interactive Argument of Knowledge) proofs. They are sent along with the transaction, being encrypted with a Sha256 hash function, to prove, via a special smart contract, that the contents of the transaction actually match the expected parameters. To create these proofs as well as the smart contracts we used [ZoKrates](https://zokrates.github.io), a tool specifically designed for Zero Knowledge interactions on the Ethereum blockchain. Since our project is not to be tested with any real money, we run all transactions through the Ropsten testnet, for which you can easily get test ETH via a so-called [faucet](https://faucet.ropsten.be/).
 More about this in our scientific paper about the project. 
 
 ## Prerequisities
@@ -40,9 +40,17 @@ which should start a shell inside the ZoKrates Docker container. Now you have to
 
 Then, inside the ZoKrates container, run:
 
-```zokrates compile -i zk-circuit.zok``` and
+```zokrates compile -i zk-circuit.zok``` and afterwards:
 
 ```zokrates setup```
 
 This will generate the proofing and the verification key, which will be used later.
+To create the smart contract that will later approve Zero Knowledge transactions on the blockchain run the following command.
+
+```zokrates export-verifier```
+
+You should now see a newly generated file called verifier.sol. That is the contract which we now want to deploy on the Ropsten testnet. In order to do this, however, we first need to copy it back out of the Docker container.
+
+```docker cp zokrates:/home/zokrates/verifier.sol your/desired/destination/verifier.sol```
+
 
