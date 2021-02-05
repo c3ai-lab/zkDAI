@@ -40,7 +40,8 @@ which should start a shell inside the ZoKrates Docker container. Now you have to
 
 Then, inside the ZoKrates container, run:
 
-```zokrates compile -i zk-circuit.zok```
+```zokrates compile -i zk-circuit.zok``` and
+
 ```zokrates setup```
 
 This will generate the proofing and the verification key, which will be used later.
