@@ -15,3 +15,9 @@ To get in touch with the implementation of a zero knowledge supported crypto cur
 ## 3. Step: Set up [zkDAI project created by ETHSingapore](https://github.com/atvanguard/ethsingapore-zk-dai)
 
 As part of a hackathon, ETHSingapore created an application to perform Zero Knowledge DAI transactions on the Ropsten test network. We will try to get the code working for us.
+
+
+# zkDAI
+
+zkDAI is the prototype stablecoin cryptocurrency that uses so-called "zero knowledge proofs" to ensure completely anonymous transactions over the blockchain. When using standard cryptocurrencies, such as Bitcoin, everyone can easily determine from which address how many BTC were sent to which receiving address via the [Bitcoin Blockexplorer](https://www.blockchain.com/de/explorer). To encrypt these publicly visible parameters, zkDAI uses zkSNARKS (Zero-Knowledge Succinct Non-Interactive Argument of Knowledge) proofs. They are sent along with the transaction, being encrypted with a Sha256 hash function, to prove, via a special smart contract, that the contents of the transaction actually match the expected parameters. More about this in our scientific paper about the project. 
+
