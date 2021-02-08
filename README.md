@@ -41,7 +41,7 @@ To now generate the proof of a transaction with ZoKrates, open zokcmd.js and rep
 
 ```node zokcmd.js```
 
-The yielded output are the parameters, that can now be used to generate a proof with ZoKrates. So go back to your terminal window where the shell from the ZoKrates Docker container is running, paste the parameters you just generated there and execute the command. ZoKrates will generate a proof.json file, which you need to copy back to your machine like we did earlier (docker cp...).  
+The yielded output are the parameters, that can now be used to generate a proof with ZoKrates. So go back to your terminal window where the shell from the ZoKrates Docker container is running, paste the parameters you just generated there and execute the command. ZoKrates will generate a proof.json file, which you need to copy back to your machine like we did earlier (docker cp...). All files from Docker are owned by root. One should convert the data for the user Ubuntu.
 
 
 
