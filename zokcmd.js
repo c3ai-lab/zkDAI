@@ -31,7 +31,7 @@ function getNoteParams(from, amount) {
 }
 
 function printZokratesCommand(params) {
-  let cmd = "./zokrates compute-witness -a ";
+  let cmd = "zokrates compute-witness -a ";
   params.forEach((p) => {
     cmd += `${new BN(p, 16).toString(10)} `;
   });
