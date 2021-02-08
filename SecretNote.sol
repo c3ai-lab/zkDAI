@@ -43,6 +43,8 @@ contract SecretNote is Verifier {
 
     event Claim(address to, uint256 amount);
 
+
+    // NEEDS TO BE UPDATED!!
     function transferNote(
         uint256[2] memory a,
         uint256[2] memory a_p,
@@ -56,6 +58,7 @@ contract SecretNote is Verifier {
         string memory encryptedNote1,
         string memory encryptedNote2
     ) public {
+        // CHECK IF PARAMETERS FOR verifyTx() ARE CORRECT
         require(verifyTx(a, b, c, input), "Invalid zk proof");
 
         bytes32 spendingNote = calcNoteHash(input[0], input[1]);
