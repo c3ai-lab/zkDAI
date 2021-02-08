@@ -52,6 +52,7 @@ function getTransferZkParams(from, fromAmount, to, toAmount) {
   printZokratesCommand(params.concat(leftOver));
 }
 
+// INSERT YOUR ADDRESSES AND VALUES HERE
 getTransferZkParams(
   "0x53F5AB8A04E0421Bd7Fa9fe5D94B6Aa90986d7E7", // sender
   "0xb", // value of the secret note
