@@ -41,9 +41,22 @@ To now generate the proof of a transaction with ZoKrates, open zokcmd.js and rep
 
 ```node zokcmd.js```
 
-The yielded output are the parameters, that can now be used to generate a proof with ZoKrates. So go back to your terminal window where the shell from the ZoKrates Docker container is running, paste the parameters you just generated there and execute the command. ZoKrates will generate a proof.json file, which you need to copy back to your machine like we did earlier (docker cp...).  
+The yielded output are the parameters, that can now be used to generate a proof with ZoKrates. So go back to your terminal window where the shell from the ZoKrates Docker container is running, paste the parameters you just generated there and execute the command. ZoKrates will generate a proof.json file, which you need to copy back to your machine like we did earlier (docker cp...). With a vbox and ubuntu, all files from Docker are owned by root. One should convert the data for the user Ubuntu.
+
+The next step is to create the frontend:
+
+The frontend runs as localhost, we need the frontend to convert ether to Dai. Furthermore you can see the number of transmitted Dai and how many notes there are. In our case, two notes are created. one amount is transferred and the other is returned to us.It starts on the start page you have to connect to metamask. The browser must run under root! Otherwise you cannot see the link for kyber.network. Kyber.network converts our ethers into dai. we need this dai's for our contract.
+We can observe the successful swapping on our frontend. Our server is set up with the commands:
+
+sudo npm run build
+sudo npm install -g server
+sudo serve -s build
+(vbox ubuntu)
 
 
+the next step is to install truffle. Truffle is a development environment, testing framework and asset pipeline for Ethereum, aiming to make life as an Ethereum developer easier.
+
+Truffle also requires that you have a running Ethereum client which supports the standard JSON RPC API (which is nearly all of them). 
 
 From this point on, we unfortunately got stuck because the entire user interaction frontend built by the Singapore developer is no longer functional. Another problem is that the SecretNote.sol contract has to be updated because the structure of the function "verifyTx()" in the parent contract "verifier.sol" has changed. At the moment, you can get a hashed note on the chain, but not the proof of it yet.
 
