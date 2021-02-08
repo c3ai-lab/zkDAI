@@ -40,4 +40,12 @@ To now generate the proof of a transaction with ZoKrates, open zokcmd.js and rep
 
 ```node zokcmd.js```
 
-The yielded output are the parameters, that can now be used to generate a proof with ZoKrates. So go back to your terminal window where the shell from the ZoKrates Docker container is running, paste the parameters you just generated there and execute the command. ZoKrates will generate a proof.json file, which you need to copy back to your machine like we did earlier.  
+The yielded output are the parameters, that can now be used to generate a proof with ZoKrates. So go back to your terminal window where the shell from the ZoKrates Docker container is running, paste the parameters you just generated there and execute the command. ZoKrates will generate a proof.json file, which you need to copy back to your machine like we did earlier (docker cp...).  
+
+
+
+From this point on, we unfortunately got stuck because the entire user interaction frontend built by the Singapore developer is no longer functional. Another problem is that the SecretNote.sol contract has to be updated because the structure of the function "verifyTx()" in the parent contract "verifier.sol" has changed. At the moment, you can get a hashed note on the chain, but not the proof of it yet.
+
+## Next steps
+
+To execute a zkDAI transaction, it is necessary to find a way to get a hashed transaction ( Sha256(sender address, value) ) together with the associated proof onto the Ropsten blockchain via the SecretNote.sol contract. For this, SecretNote.sol needs to be adapted to the verifier.sol exported by ZoKrates and, if necessary, a frontend for user interaction needs to be created.    
