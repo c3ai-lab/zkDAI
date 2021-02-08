@@ -7,6 +7,7 @@ zkDAI is the prototype stablecoin cryptocurrency that uses so-called "zero knowl
 
 - Install [Docker](https://docs.docker.com/get-docker/) on your system 
 - Clone this repository
+- Have node.js installed
 - Create a [MetaMask](https://metamask.io/) account
 
 ## Setup
