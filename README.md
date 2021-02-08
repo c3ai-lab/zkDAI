@@ -34,4 +34,10 @@ You should now see a newly generated file called verifier.sol. That is the contr
 
 ```docker cp zokrates:/home/zokrates/verifier.sol your/desired/destination/verifier.sol```
 
+To deploy the verifier.sol as well as SecretNote.sol and ERC20Interface.sol, go to https://remix.ethereum.org/ and upload the files there. Select the 0.6.1 compiler to compile the three contracts. Now head to the "Deploy & run transactions" tab and deploy verifier.sol and SecretNote.sol to Ropsten. You will need a MetaMask account with some test ETH to "pay" for the deployment.
 
+To now generate the proof of a transaction with ZoKrates, open zokcmd.js and replace the addresses and values on the very bottom of the file (line 55-60) with your desired values and addresses. Then execute zokcmd.js, using:
+
+```node zokcmd.js```
+
+The yielded output are the parameters, that can now be used to generate a proof with ZoKrates. So go back to your terminal window where the shell from the ZoKrates Docker container is running, paste the parameters you just generated there and execute the command. ZoKrates will generate a proof.json file, which you need to copy back to your machine like we did earlier.  
