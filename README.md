@@ -46,7 +46,10 @@ The yielded output are the parameters, that can now be used to generate a proof 
 ```zokrates generate-proof```
 
 ZoKrates will generate a proof.json file, which you need to copy back to your machine like we did earlier (docker cp...).  
+While this happens, head back to the Remix browser IDE and open the link to the ropsten block explorer, where you can see the details about the SecretNote contract deployment. You can find the terminal at the bottom of the page. It should look something like this:
 
+```creation of SecretNote pending...```
+```https://ropsten.etherscan.io/tx/0x73804485f53349e51919a612d9e584028f41e7ac94b3080509a``` 
 
 
 From this point on, we unfortunately got stuck because the entire user interaction frontend built by the Singapore developer is no longer functional. Another problem is that the SecretNote.sol contract has to be updated because the structure of the function "verifyTx()" in the parent contract "verifier.sol" has changed. At the moment, you can get a hashed note on the chain, but not the proof of it yet.
