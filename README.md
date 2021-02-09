@@ -53,6 +53,20 @@ creation of SecretNote pending...
 https://ropsten.etherscan.io/tx/0x73804485f53349e51919a612d9e584028f41e7ac94b3080509a
 ``` 
 
+When on the Ropsten blockexplorer page, look for the parameter "To:", which reveals the address to which the SecretNote contract was deployed. Copy that address.
+Now go to the cloned project and search for "SETUP_ADDRESS" and change the address at every found occurence to the address of your SecretNote contract. 
+You can now launch the frontend with:
+
+```
+sudo npm run build
+sudo npm install -g serve
+sudo serve -s build
+```
+
+The frontend will be available at localhost:5000. Try to hit the "Connect with MetaMask" button. If that does not work, click the icon of the MetaMask browser extension (top right corner), select your desired account, click the three little dots on the top right, select connected sites and connect to site manually. Enter localhost:5000 and hit connect. You should now be able to see the frontend, separated in "Your Cash" and "Cash Pool".
+
+
+
 
 From this point on, we unfortunately got stuck because the entire user interaction frontend built by the Singapore developer is no longer functional. Another problem is that the SecretNote.sol contract has to be updated because the structure of the function "verifyTx()" in the parent contract "verifier.sol" has changed. At the moment, you can get a hashed note on the chain, but not the proof of it yet.
 
