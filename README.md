@@ -82,11 +82,23 @@ sudo serve -s build
 
 The frontend will be available at localhost:5000. Try to hit the "Connect with MetaMask" button. If that does not work, click the icon of the MetaMask browser extension (top right corner), select your desired account, click the three little dots on the top right, select connected sites and connect to site manually. Enter localhost:5000 and hit connect. You should now be able to see the frontend, separated in "Your Cash" and "Cash Pool". Your cash shows any transactions, that are validated and ready to be claimed. Cash pool shows every transaction on the SecretNote (of course only hashed values, that nobody can make sense of).
 
+The workflow to now send some zkDAI to another address is the following:
 
+1. Click the "Pay with Tokens" button on the top of the page, this should open a kyber widget were you can swap ETH into DAI which will be send to the SecretNote contract. By the time of writing, the amount which will be send is hardcoded to 5 (e.g. in zokcmd.js). This has to be refined to be dynamic in the future. But for now, just buy DAI for about 0.003 ETH (~5,13 DAI). After confirming, you should now see the 5 Token inside the "Your Cash" area.
 
+2. Head back to your terminal session running in the directory of your project and execute
+```
+cd ethereum
+truffle exec scripts/transferNote.js
+```
+Unfortunately, this is still very buggy and is not working reliably. This is the main thing, that has to be fixed in the future.
 
-From this point on, we unfortunately got stuck because the entire user interaction frontend built by the Singapore developer is no longer functional. Another problem is that the SecretNote.sol contract has to be updated because the structure of the function "verifyTx()" in the parent contract "verifier.sol" has changed. At the moment, you can get a hashed note on the chain, but not the proof of it yet.
+3. When now checking the Ropsten block explorer, you will find that all the transactions details have been hidden by the zero knowledge method. As the sender you will now see the "change" of the transaction being ready to be claimed by you in the "Your Cash" overview. Below, in the "Cash Pool" area, some more hashed strings appeared. They represent the transaction you just made.
+
+4. The receiver should now also have the possibility to claim the value that has been send to him. For testing purposes, we recommend to use two MetaMask accounts to simply switch between them and receive the transfer from your 1. account with your 2. account.
+
+And that is it! You just sent your very first zero knowledge crypto transaction! :)
 
 ## Next steps
 
-To execute a zkDAI transaction, it is necessary to find a way to get a hashed transaction ( Sha256(sender address, value) ) together with the associated proof onto the Ropsten blockchain via the SecretNote.sol contract. For this, SecretNote.sol needs to be adapted to the verifier.sol exported by ZoKrates and, if necessary, a frontend for user interaction needs to be created.    
+As already described, the transfer process is unfortunately still very error-prone and not yet truly dynamic. So the next steps should be to improve the scripts and to automate the general flow of the setup more and more. Tools like [truffle](https://www.trufflesuite.com/docs/truffle/reference/configuration) can be very helpful in deploying the contracts, for example.   
