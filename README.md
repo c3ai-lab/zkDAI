@@ -14,36 +14,53 @@ zkDAI is the prototype stablecoin cryptocurrency that uses so-called "zero knowl
 
 The first step is to compile the code inside zk-circuit.zok, which holds the logic for a zero knowledge proof on a blockchain transaction. To do this, simple run
 
-```docker run -ti zokrates/zokrates /bin/bash```
+```
+docker run -ti zokrates/zokrates /bin/bash
+```
 
 which should start a shell inside the ZoKrates Docker container. Now you have to copy the zk-circuit.zok file into the container.
 
-```docker cp path/of/your/local/zk-circuit.zok zokrates:/home/zokrates/```
+```
+docker cp path/of/your/local/zk-circuit.zok zokrates:/home/zokrates/
+```
 
 Then, inside the ZoKrates container, run:
 
-```zokrates compile -i zk-circuit.zok``` and afterwards:
+```
+zokrates compile -i zk-circuit.zok
+``` 
+and afterwards:
 
-```zokrates setup```
+```
+zokrates setup
+```
 
 This will generate the proofing and the verification key, which will be used later.
 To create the smart contract that will later approve Zero Knowledge transactions on the blockchain run the following command.
 
-```zokrates export-verifier```
+```
+zokrates export-verifier
+```
 
 You should now see a newly generated file called verifier.sol. That is the contract which we now want to deploy on the Ropsten testnet. In order to do this, however, we first need to copy it back out of the Docker container.
 
-```docker cp zokrates:/home/zokrates/verifier.sol your/desired/destination/verifier.sol```
+```
+docker cp zokrates:/home/zokrates/verifier.sol your/desired/destination/verifier.sol
+```
 
 To deploy the verifier.sol as well as SecretNote.sol and ERC20Interface.sol, go to https://remix.ethereum.org/ and upload the files there. Select the 0.6.1 compiler to compile the three contracts. Now head to the "Deploy & run transactions" tab and deploy verifier.sol and SecretNote.sol to Ropsten. You will need a MetaMask account with some test ETH to "pay" for the deployment.
 
 To now generate the proof of a transaction with ZoKrates, open zokcmd.js and replace the addresses and values on the very bottom of the file (line 55-60) with your desired values and addresses. Then execute zokcmd.js, using:
 
-```node zokcmd.js```
+```
+node zokcmd.js
+```
 
 The yielded output are the parameters, that can now be used to generate a proof with ZoKrates. So go back to your terminal window where the shell from the ZoKrates Docker container is running, paste the parameters you just generated there and execute the command. After the process has finished, execute:
 
-```zokrates generate-proof```
+```
+zokrates generate-proof
+```
 
 ZoKrates will generate a proof.json file, which you need to copy back to your machine like we did earlier (docker cp...).  
 While this happens, head back to the Remix browser IDE and open the link to the ropsten block explorer, where you can see the details about the SecretNote contract deployment. You can find the terminal at the bottom of the page. It should look something like this:
@@ -63,7 +80,7 @@ sudo npm install -g serve
 sudo serve -s build
 ```
 
-The frontend will be available at localhost:5000. Try to hit the "Connect with MetaMask" button. If that does not work, click the icon of the MetaMask browser extension (top right corner), select your desired account, click the three little dots on the top right, select connected sites and connect to site manually. Enter localhost:5000 and hit connect. You should now be able to see the frontend, separated in "Your Cash" and "Cash Pool".
+The frontend will be available at localhost:5000. Try to hit the "Connect with MetaMask" button. If that does not work, click the icon of the MetaMask browser extension (top right corner), select your desired account, click the three little dots on the top right, select connected sites and connect to site manually. Enter localhost:5000 and hit connect. You should now be able to see the frontend, separated in "Your Cash" and "Cash Pool". Your cash shows any transactions, that are validated and ready to be claimed. Cash pool shows every transaction on the SecretNote (of course only hashed values, that nobody can make sense of).
 
 
 
