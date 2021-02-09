@@ -10,7 +10,7 @@ zkDAI is the prototype stablecoin cryptocurrency that uses so-called "zero knowl
 - Have node.js installed
 - Create a [MetaMask](https://metamask.io/) account
 
-## Setup
+## Setup on MacOS
 
 The first step is to compile the code inside zk-circuit.zok, which holds the logic for a zero knowledge proof on a blockchain transaction. To do this, simple run
 
