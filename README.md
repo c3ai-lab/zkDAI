@@ -99,6 +99,10 @@ Unfortunately, this is still very buggy and is not working reliably. This is the
 
 And that is it! You just sent your very first zero knowledge crypto transaction! :)
 
+## Setup with Ubuntu VirtualBox
+
+WIP
+
 ## Next steps
 
 As already described, the transfer process is unfortunately still very error-prone and not yet truly dynamic. So the next steps should be to improve the scripts and to automate the general flow of the setup more and more. Tools like [truffle](https://www.trufflesuite.com/docs/truffle/reference/configuration) can be very helpful in deploying the contracts, for example.   
