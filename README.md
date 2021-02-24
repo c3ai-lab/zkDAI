@@ -101,7 +101,96 @@ And that is it! You just sent your very first zero knowledge crypto transaction!
 
 ## Setup with Ubuntu VirtualBox
 
-WIP
+The following software is required for ubuntu in a VirtualBox:  
+
+Libsnark : This library implements zkSNARK schemes, which are a cryptographic method for proving/verifying the integrity of computations of zero knowledge proofs. 
+
+ganachi-cli : Ganache CLI is the latest version of TestRPC: a fast and customizable blockchain emulator. It allows you to make calls to the blockchain without the overheads of running an actual Ethereum node.
+
+Benefits:
+
+- Transactions are “mined” instantly. 
+
+- No transaction cost. 
+
+- Accounts can be re-cycled, reset and instantiated with a fixed amount of Ether (no need for faucets or mining). 
+
+- Gas price and mining speed can be modified. 
+
+- A convenient GUI gives you an overview of your testchain events.  
+
+Ganache can be installed via NPM: 
+```
+npm install -g ganache-cli 
+``` 
+### Setup
+
+Three terminals are required for the ubuntu solution. The commands are very similar to the MacOS environment 
+
+In the first terminal, the ganache cli is required to generate the test ETHER and to generate it from the frontend server 
+
+The frontend server runs under the port address 5000. Here it is important that the browser runs with root rights, otherwise you cannot see the button for the swap from ether to dai. 
+
+If it doesn't work under ubuntu, the address is: 
+
+https://widget.kyber.network/v0.3/widget.js 
+
+You need to enable JavaScript to run this app. 😉 
+
+in the second terminal our zokrates runs in an docker with the commands: 
+
+```
+./zokrates compile -i zk-circuit.code (generate R1CS circuits) 
+
+./zokrates setup (generate prover and verifier keys) 
+
+./zokrates export-verifier (generate solidity smart contract) 
+```
+ 
+The main smart contract is SecretNote.sol. It will call the verifier smart contract (verifier.sol) to verify whether the transaction is legal. We use Zokrates to generate verifier.sol. After deploying our smart contracts, we can use a front end to interact with the smart contract to send and withdraw money without leaking privacy information. 
+
+In the third terminal we need the files transferNote.js, listener.js. and proof.json 
+
+The truffle program is still required. Truffle is a development environment, testing framework and asset pipeline for Ethereum, aiming to make life as an Ethereum developer easier.  
+
+A configuration file belongs to truffle, this file must be configured accordingly.  
+
+For the ropsten test net, the following entry should be in the truffle-config.js: 
+
+ 
+```
+ropsten: { 
+
+      provider: () => { 
+
+        return new HDWalletProvider( 
+
+          privateKeys, 
+
+          'https://ropsten.infura.io/v3/' + process.env.INFURA_API_KEY, 
+
+          0, 
+
+          1, 
+
+        ); 
+
+      }, 
+
+      network_id: 3, // Ropsten's id 
+
+      gas: 5500000, // Ropsten has a lower block limit than mainnet 
+
+      skipDryRun: true, 
+
+    }
+```
+and then the transfer is initiated by running: 
+
+```sudo truffle exec scripts/transferNote.js``` 
+
+There are some package conflicts when installing truffle on an unbuntu system. Furthermore, the Windows host firewall, although it has been deactivated, does not allow certain packages to get through. For this reason, the client waits in vain for an answer from the ropsten test network. 
+
 
 ## Next steps
 
