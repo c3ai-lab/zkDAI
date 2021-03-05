@@ -45,6 +45,8 @@ contract SecretNote is Verifier {
 
 
     // NEEDS TO BE UPDATED!!
+    // THIS IS THE MOST IMPORTANT PART OF THE ZKDAI TRANSACTION.
+    // HAS TO BE FIXED IN THE FUTURE.
     function transferNote(
         uint256[2] memory a,
         uint256[2] memory a_p,
@@ -104,7 +106,8 @@ contract SecretNote is Verifier {
         }
         note = bytesToBytes32(_note, 0);
     }
-
+    
+    // FUNCTIONS TO CONVERT DATA TYPES
     function bytesToBytes32(bytes memory b, uint256 offset)
         internal
         pure
